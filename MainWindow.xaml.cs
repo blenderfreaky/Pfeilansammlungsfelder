@@ -125,7 +125,7 @@ namespace Pfeilansammlungsfelder
                     for (double x = start.X, y = start.Y; (accuracy < 0 || x <= max.X / length) && (accuracy > 0 || x >= min.X / length) && y <= max.Y / length && y >= min.Y / length;)
                     {
                         double val = func(x, y);
-                        if (double.IsNaN(val)) continue;
+                        if (double.IsNaN(val)) break;
 
                         (double oldX, double oldY) = (x, y);
                         double atan = Math.Atan(val);
