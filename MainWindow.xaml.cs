@@ -119,9 +119,10 @@ namespace Pfeilansammlungsfelder
 
                 Point start = new Point(Convert.ToDouble(staX.Text), Convert.ToDouble(staY.Text));
                 double currentAccuracy = Convert.ToDouble(acc.Text);
-
+                
                 void DrawApprox(double accuracy)
                 {
+                    if (accuracy == 0) return;
                     for (double x = start.X, y = start.Y; (accuracy < 0 || x <= max.X / length) && (accuracy > 0 || x >= min.X / length) && y <= max.Y / length && y >= min.Y / length;)
                     {
                         double val = func(x, y);
