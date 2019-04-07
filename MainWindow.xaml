@@ -1,4 +1,4 @@
-﻿<Window x:Class="Pfeilansammlungsfelder.MainWindow"
+﻿<material:MaterialWindow x:Class="Pfeilansammlungsfelder.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,14 +8,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <material:PanBorder>
-            <Canvas x:Name="plot" Background="White">
-                <Line X1="-1E+99" X2="1E+99" Stroke="Black" StrokeThickness="2"/>
-                <Line Y1="-1E+99" Y2="1E+99" Stroke="Black" StrokeThickness="2"/>
-                <ItemsControl x:Name="arrows">
-
-                </ItemsControl>
-            </Canvas>
+        <material:PanBorder x:Name="pan">
+            <Grid Background="White" Margin="-10000">
+                <Canvas x:Name="plot" Background="White" Margin="10000">
+                    <Line X1="-999999" X2="999999" Y1="0" Y2="0" Stroke="Black" StrokeThickness="3"/>
+                    <Line Y1="-999999" Y2="999999" X1="0" X2="0" Stroke="Black" StrokeThickness="3"/>
+                    
+                    <Canvas x:Name="markings" Background="White"/>
+                    <Canvas x:Name="arrows" Background="White"/>
+                </Canvas>
+            </Grid>
         </material:PanBorder>
     </Grid>
-</Window>
+</material:MaterialWindow>

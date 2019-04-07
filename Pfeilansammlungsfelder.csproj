@@ -35,8 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MaterialDesign2">
-      <HintPath>..\..\..\BwInfR2\Libraries\MaterialDesign2.dll</HintPath>
+    <Reference Include="MaterialDesign2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Personal\School\Info\BwInf\BwInfR2\Libraries\MaterialDesign2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
