@@ -1,4 +1,5 @@
 ﻿using MaterialDesign2.Controls;
+using NCalc2;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,6 +39,23 @@ namespace Pfeilansammlungsfelder
             DrawLines(new Point(-1000, -1000), new Point(1000, 1000), 1, true, true);
         }
 
+        private static Random random = new Random();
+        private static void CustomFunction(string name, FunctionArgs args)
+        {
+            switch (name)
+            {
+                case "Ln":
+                    double arg = (double)args.Parameters[0].Evaluate();
+                    if (arg <= 0) args.HasResult = false;
+                    else args.Result = Math.Log(arg);
+                    break;
+                case "Random":
+                    if (args.Parameters.Count() == 0) args.Result = random.NextDouble();
+                    else if (args.Parameters.Count() == 1) args.Result = random.NextDouble() * Convert.ToDouble(args.Parameters[0].Evaluate());
+                    else if (args.Parameters.Count() == 2) args.Result = random.NextDouble() * Convert.ToDouble(args.Parameters[1].Evaluate()) + Convert.ToDouble(args.Parameters[0].Evaluate());
+                    break;
+            }
+        }
         public void DrawLines(Point? Min = null, Point? Max = null, double radius = 1, bool drawArrows = true, bool grid = false, bool drawApprox = true)
         {
             var translate = pan.translateTransform;
@@ -58,6 +76,9 @@ namespace Pfeilansammlungsfelder
             Point roundedMin1 = new Point(step / 10 * (int)(min.X / step * 10), step / 10 * (int)(min.Y / step * 10));
 
             Expression expression = new Expression(exp.Text);
+            expression.Parameters["e"] = Math.E;
+            expression.Parameters["pi"] = Math.PI;
+            expression.EvaluateFunction += CustomFunction;
             double func(double x, double y)
             {
                 expression.Parameters["x"] = x;
