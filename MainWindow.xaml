@@ -5,19 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pfeilansammlungsfelder"
         xmlns:material="clr-namespace:MaterialDesign2.Controls;assembly=MaterialDesign2"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+                         xmlns:oxy="http://oxyplot.org/wpf"
+                         mc:Ignorable="d"
+        Title="Pfeilansammlungsfelder" Height="450" Width="800">
     <Grid>
         <material:PanBorder x:Name="pan">
             <Grid Background="White" Margin="-10000">
-                <Canvas x:Name="plot" Background="White" Margin="10000">
-                    <Line X1="-999999" X2="999999" Y1="0" Y2="0" Stroke="Black" StrokeThickness="3"/>
-                    <Line Y1="-999999" Y2="999999" X1="0" X2="0" Stroke="Black" StrokeThickness="3"/>
-                    
+                <Canvas x:Name="plot" Background="White" Margin="10000" RenderTransformOrigin="0.5,0.5">
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="-1" ScaleX="1"/>
+                            <SkewTransform AngleY="0" AngleX="0"/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                    <Line X1="-99999" X2="99999" Y1="0" Y2="0" Stroke="Black" StrokeThickness="2"/>
+                    <Line Y1="-99999" Y2="99999" X1="0" X2="0" Stroke="Black" StrokeThickness="2"/>
+
                     <Canvas x:Name="markings" Background="White"/>
                     <Canvas x:Name="arrows" Background="White"/>
+                    <Canvas x:Name="approx" Background="White"/>
                 </Canvas>
             </Grid>
         </material:PanBorder>
+        <Border CornerRadius="0,0,10,0" Background="#FFE8E8E8" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Border.Effect>
+                <DropShadowEffect Direction="-90" Opacity="0.2" ShadowDepth="2"/>
+            </Border.Effect>
+            <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <material:MaterialTextBoxFilled Label="Start X" Margin="5" x:Name="staX" TextWrapping="NoWrap" Text="0" Width="200" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Cambria Math"/>
+                <material:MaterialTextBoxFilled Label="Start Y" Margin="5" x:Name="staY" TextWrapping="NoWrap" Text="1" Width="200" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Cambria Math"/>
+                <material:MaterialTextBoxFilled Label="Accuracy" Margin="5" x:Name="acc" TextWrapping="NoWrap" Text="1" Width="200" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Cambria Math"/>
+            </StackPanel>
+            <StackPanel>
+                <material:MaterialTextBoxFilled Label="Function" Margin="5" x:Name="exp" TextWrapping="NoWrap" Text="x*y" Width="200" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Cambria Math"/>
+                <material:MaterialTextBoxFilled Label="Arrow Count" Margin="5" x:Name="scaler" TextWrapping="NoWrap" Text="1" Width="200" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Cambria Math"/>
+                <material:MaterialButton ShadowEnabled="True" Margin="5" x:Name="eval" Text="EVAL" Width="200" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="5" Background="#FF0080FF" Foreground="White" FontWeight="Bold"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </material:MaterialWindow>
