@@ -1,6 +1,4 @@
 ﻿using MaterialDesign2.Controls;
-using OxyPlot;
-using OxyPlot.Series;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -35,7 +33,7 @@ namespace Pfeilansammlungsfelder
             pan.MouseLeftButtonUp += (_, __) => DrawLines();
             pan.MouseMove += (_, __) => DrawLines();
             pan.PreviewMouseRightButtonDown += (_, __) => DrawLines();*/
-            eval.Click += (_, __) => { try { DrawLines(null, null, 2, true, true); } catch (Exception) { } };
+            eval.Click += (_, __) => { try { DrawLines(null, null, 1, true, true); } catch (Exception) { } };
 
             DrawLines(new Point(-1000, -1000), new Point(1000, 1000), 1, true, true);
         }
